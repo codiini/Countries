@@ -1,17 +1,19 @@
 <template>
-<div id="app">
-  <HelloWorld/>
-</div>
+  <div id="app">
+    <ShowCountries />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import ShowCountries from "./components/ShowCountries";
+// import CountryDetails from './components/CountryDetails';
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
-    HelloWorld,
+    ShowCountries,
+    // CountryDetails
   },
 
   data: () => ({
@@ -19,3 +21,9 @@ export default {
   }),
 };
 </script>
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
+*{
+  font-family: 'Nunito Sans', sans-serif;
+}
+</style>
