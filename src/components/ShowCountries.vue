@@ -1,15 +1,9 @@
 <template>
   <div id="container">
-    <header>
-      <h2>Where in the world</h2>
-      <div class="darkmode">
-        <i class="far fa-moon mr-14"></i>
-        <p>Dark Mode</p>
-      </div>
-    </header>
     <div class="main">
       <div class="controls-section">
         <div class="input-section">
+          <i class="fas fa-search"></i>
           <input
             type="text"
             placeholder="Search for a country"
@@ -17,6 +11,7 @@
           />
         </div>
         <div class="filters">
+          <i class="fas fa-caret-down"></i>
           <select name="choice" v-model="region">
             <option disabled value="">Filter by Region</option>
             <option value="africa">Africa</option>
@@ -33,11 +28,17 @@
           v-for="(country, index) in countryFilter"
           :key="index"
         >
-          <img :src="country.flag" alt="" class="countryflag" />
-          <h3>{{ country.name }}</h3>
-          <p><strong>Population: </strong>{{ country.population }}</p>
-          <p><strong>Region: </strong>{{ country.region }}</p>
-          <p><strong>Capital: </strong>{{ country.capital }}</p>
+          <router-link :to="'country/' + country.alpha3Code">
+            <img :src="country.flag" alt="" class="countryflag" />
+
+            <h3>{{ country.name }}</h3>
+            <p>
+              <strong>Population: </strong
+              >{{ country.population | formatNumber }}
+            </p>
+            <p><strong>Region: </strong>{{ country.region }}</p>
+            <p><strong>Capital: </strong>{{ country.capital }}</p>
+          </router-link>
         </div>
       </div>
     </div>
@@ -50,7 +51,6 @@ export default {
   name: "ShowCountries",
   data() {
     return {
-      country: "",
       search: "",
       region: "",
       countriesList: [],
@@ -90,23 +90,16 @@ export default {
 };
 </script>
 <style scoped>
-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 30px;
-  height: 1rem;
-  background: #fff;
-  background: #ffffff;
-  box-shadow: -20px 20px 40px #e6e6e6, 20px -20px 40px #ffffff;
+#container {
+  padding-bottom:50px;
+  height:100%;
+  background: var(--bgColor);
 }
 .main {
-  padding: 1rem 3rem;
-}
-.darkmode {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height:100%;
+  width: 90%;
+  margin: 0 auto;
+  background: var(--bgColor);
 }
 .controls-section {
   display: flex;
@@ -114,21 +107,44 @@ header {
   justify-content: space-between;
 }
 .input-section {
+  display: flex;
   margin-top: 50px;
   width: 30%;
 }
+.input-section i {
+  position: absolute;
+  padding: 20px;
+  margin-top: 5px;
+  margin-right: 10px;
+  color: var(--text);
+}
 .input-section input {
   width: 100%;
-  padding: 1rem;
+  padding: 1.5rem 3.5rem;
   border: none;
   border-radius: 6px;
-  background-color: #fff;
-  box-shadow: 5.71px 5.71px 22px #929496, -5.71px -5.71px 22px #ffffff;
+  background-color: var(--bgColor);
+  color: var(--text);
+  box-shadow: 5.71px 5.71px 22px hsla(208.4, 13.3%, 28%, 0.19),
+    -5.71px -5.71px 22px hsla(12, 2.8%, 34.7%, 0.24);
+}
+.filters {
+  position: relative;
 }
 .filters select {
   outline: none;
   border: 0.3px solid grey;
-  padding: 0.8rem;
+  border-radius: 4px;
+  padding: 1rem 2rem;
+  appearance: none;
+  background: var(--bgColor);
+  color: var(--text);
+}
+.filters i {
+  position: absolute;
+  right: 15px;
+  top: 16px;
+  color: var(--text);
 }
 .countries {
   display: grid;
@@ -138,19 +154,25 @@ header {
   margin: 70px auto;
 }
 .country {
-  background: #fff;
+  background: var(--bgColor);
   height: 400px;
-  width:fit-content;
   margin: 0 auto;
   border-radius: 10px;
-  box-shadow: 1.5px 1.5px 11px #d1d3d7, -1.5px -1.5px 11px #ffffff;
+  box-shadow: 1.5px 1.5px 11px hsla(208.4, 23.5%, 31.8%, 0.39),
+    -1.5px -1.5px 11px rgba(0, 0, 0, 0);
 }
+
 .country h3,
 p {
   margin-left: 10px;
+  color: var(--text);
 }
 .countryflag {
-  width:270px;
-  height:auto;
+  width: 270px;
+  height: auto;
+}
+a {
+  text-decoration: none;
+  color: black;
 }
 </style>
