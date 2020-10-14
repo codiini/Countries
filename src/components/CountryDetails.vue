@@ -29,12 +29,12 @@
         </div>
       </div>
       <div class="info_three">
-        <p>
-          <strong>Border Countries:</strong>
-          <span class="border" v-for="(border, index) in borders" :key="index">
-            <router-link :to="'/country/' + border"> {{ border }}</router-link>
-          </span>
-        </p>
+        <!-- <div> -->
+          <p><strong>Border Countries:</strong></p>
+          <div class="border" v-for="(border, index) in borders" :key="index">
+            <a :href="'/country/' + border"> {{ border }}</a>
+          </div>
+        <!-- </div> -->
       </div>
     </div>
   </div>
@@ -59,7 +59,6 @@ export default {
       .then((response) => {
         this.country = response.data;
         this.borders = response.data.borders;
-        console.log(response.data.borders);
       });
     axios.get("https://restcountries.eu/rest/v2/all").then((response) => {
       this.countriesList = response.data;
@@ -70,8 +69,10 @@ export default {
 
 <style scoped>
 #country-details {
+  height:100%;
   margin-top: 50px;
   margin-left: 50px;
+  padding-bottom:30px;
   background: var(--bgColor);
   color: var(--text);
 }
@@ -107,15 +108,41 @@ export default {
   margin: 50px auto;
 }
 .info_three {
-  padding: 50px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position:relative;
+}
+.info_three p{
+  display: block;
 }
 .border {
-  border: 1px solid var(--text);
-  margin: 0 5px;
+  display: inline-block;
+  margin:5px;
   padding: 5px;
+  background: var(--bgColor);
+  box-shadow: 1.5px 1.5px 11px hsla(208.4, 23.5%, 31.8%, 0.39),
+    -1.5px -1.5px 11px rgba(0, 0, 0, 0);
 }
 .border a {
   text-decoration: none;
   color: var(--text);
+}
+/* Mobile Styling */
+@media screen and (max-width: 900px) {
+  .main_1 {
+    display: block;
+  }
+  .flag-container {
+    margin: 0 auto;
+  }
+  .flag {
+    width: 250px;
+  }
+  .info_three{
+    display: inline;
+    margin:0 auto;
+    padding-bottom:20px;
+  }
 }
 </style>
