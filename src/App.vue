@@ -20,9 +20,15 @@ export default {
     };
   },
   created() {
+    this.theme = JSON.parse(localStorage.getItem("theme"))
     EventBus.$on("darkmode", (changeMode) => {
       this.theme = changeMode;
     });
+  },
+  watch:{
+    theme:function(){
+      localStorage.setItem("theme", JSON.stringify(this.theme))
+    }
   },
 };
 </script>
