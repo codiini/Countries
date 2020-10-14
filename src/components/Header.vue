@@ -1,7 +1,7 @@
 <template>
   <div>
     <header>
-      <router-link :to="'/'" class="router-home"><h2>Where in the world</h2></router-link>
+      <router-link :to="'/'" class="router-home"><h4>Where in the world</h4></router-link>
       <div class="darkmode" @click="modeToggle">
         <button :class="{ far: true, 'fa-moon': moon, 'fa-sun': sun }"></button>
         <p v-if="moon">Dark Mode</p>
@@ -38,6 +38,8 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 30px;
+  margin:0 auto;
+  /* width:100%; */
   height: 1rem;
   background: var(--bgColor);
   color: var(--text);

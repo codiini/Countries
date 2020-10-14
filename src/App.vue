@@ -42,6 +42,8 @@ html,
 body {
   background: var(--bgColor);
   color: var(--text);
+  height:100%;
+  width:100%;
 }
 :root {
   --darkBlue: var(hsl(209, 23%, 22%));

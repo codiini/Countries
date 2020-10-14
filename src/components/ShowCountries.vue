@@ -91,12 +91,13 @@ export default {
 </script>
 <style scoped>
 #container {
-  padding-bottom:50px;
-  height:100%;
+  padding-bottom: 50px;
+  height: 100%;
   background: var(--bgColor);
 }
 .main {
-  height:100%;
+  min-height: 100vh;
+  height: 100%;
   width: 90%;
   margin: 0 auto;
   background: var(--bgColor);
@@ -109,7 +110,7 @@ export default {
 .input-section {
   display: flex;
   margin-top: 50px;
-  width: 30%;
+  width: 50%;
 }
 .input-section i {
   position: absolute;
@@ -148,8 +149,8 @@ export default {
 }
 .countries {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-gap: 3rem;
   grid-auto-rows: minmax(100px, auto);
   margin: 70px auto;
 }
@@ -174,5 +175,13 @@ p {
 a {
   text-decoration: none;
   color: black;
+}
+@media screen and (max-width: 500px) {
+  .controls-section {
+    flex-direction: column;
+  }
+  .filters {
+    margin-top: 2rem;
+  }
 }
 </style>
