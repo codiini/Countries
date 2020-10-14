@@ -20,15 +20,15 @@ export default {
     };
   },
   created() {
-    this.theme = JSON.parse(localStorage.getItem("theme"))
+    this.theme = JSON.parse(localStorage.getItem("theme"));
     EventBus.$on("darkmode", (changeMode) => {
       this.theme = changeMode;
     });
   },
-  watch:{
-    theme:function(){
-      localStorage.setItem("theme", JSON.stringify(this.theme))
-    }
+  watch: {
+    theme: function () {
+      localStorage.setItem("theme", JSON.stringify(this.theme));
+    },
   },
 };
 </script>
@@ -36,14 +36,17 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
 * {
   font-family: "Nunito Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 #app,
 html,
 body {
   background: var(--bgColor);
   color: var(--text);
-  height:100%;
-  width:100%;
+  height: 100%;
+  width: 100%;
 }
 :root {
   --darkBlue: var(hsl(209, 23%, 22%));
