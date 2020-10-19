@@ -21,18 +21,18 @@
           <p><strong>Capital:</strong> {{ country.capital }}</p>
         </div>
         <div class="info_two">
-          <p>
+          <p v-if="country.topLevelDomain">
             <strong>Top Level Domain:</strong> {{ country.topLevelDomain[0] }}
           </p>
-          <p><strong>Currencies:</strong> {{ country.currencies[0].name }}</p>
-          <p><strong>Languages:</strong> {{ country.languages[0].name }}</p>
+          <p v-if="country.currencies"><strong>Currencies:</strong> {{ country.currencies[0].name }}</p>
+          <p v-if="country.languages"><strong>Languages:</strong> {{ country.languages[0].name }}</p>
         </div>
       </div>
       <div class="info_three">
         <!-- <div> -->
           <p><strong>Border Countries:</strong></p>
           <div class="border" v-for="(border, index) in borders" :key="index">
-            <a :href="'/country/' + border"> {{ border }}</a>
+            <router-link :to="'/country/' + border"> {{ border }}</router-link>
           </div>
         <!-- </div> -->
       </div>
